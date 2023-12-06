@@ -141,6 +141,10 @@ class HBNBCommand(cmd.Cmd):
                 key = key.replace('_', ' ')
                 if value.startswith('"') and value.endswith('"'):
                     value = value[1:-1]
+                elif value.isdigit():
+                    value = int(value)
+                elif value.replace('.', '', 1).isdigit():
+                    value = float(value)
                 setattr(new_instance, key, value)
             except Exception as e:
                 print(f"Error parsing parameter '{param}': {e}")
